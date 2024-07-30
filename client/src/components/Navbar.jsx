@@ -1,29 +1,41 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import { HiAdjustments } from "react-icons/hi";
+import { HiAdjustments, HiArrowRight } from "react-icons/hi";
 import { IoIosContact } from "react-icons/io";
 import { IoBagOutline } from "react-icons/io5";
-import { HiArrowRight } from "react-icons/hi";
 import { CiHeart } from "react-icons/ci";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Button,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 
 export const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [fitem, setFitem] = useState(0);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDrawerOpen,
+    onOpen: onDrawerOpen,
+    onClose: onDrawerClose,
+  } = useDisclosure();
+
   const [showSignIn, setShowSignIn] = useState(false);
   const [showBag, setShowBag] = useState(false);
-  const [cartprice, setcartprice] = useState(0);
+  const [cartprice, setCartPrice] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
@@ -52,7 +64,7 @@ export const Navbar = () => {
         onMouseLeave={() => setShowSignIn(false)}
       >
         <IoIosContact className="w-6 h-6" />
-        <p className="hidden md:flex">Sign in</p>
+        <p className="hidden md:flex ">Sign in</p>
         {showSignIn && (
           <div className="hidden md:block z-10 absolute top-full left-0 w-[240px] text-sm bg-white border p-2 shadow-md">
             <button className="bg-black text-white w-full p-2 mb-5">
@@ -65,7 +77,7 @@ export const Navbar = () => {
         )}
       </div>
 
-      <div className="flex items-center text-md space-x-2 relative ">
+      <div className="flex items-center text-md space-x-2 relative">
         <CiHeart className="w-6 h-6" />
         <p className="hidden md:flex">Favourites</p>
       </div>
@@ -104,7 +116,7 @@ export const Navbar = () => {
             isMenuActive ? "bx-x" : ""
           } block md:hidden text-2xl`}
           id="menu-icon"
-          onClick={onOpen}
+          onClick={onDrawerOpen}
         ></div>
         <div className="flex items-center space-x-4 md:hidden">
           <img src={logo} className="h-[40px] w-[50px]" alt="Logo" />
@@ -124,7 +136,7 @@ export const Navbar = () => {
           isMenuActive ? "block" : "hidden"
         } absolute top-full left-0 w-full py-4 px-3`}
       ></div>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="left" onClose={onDrawerClose} isOpen={isDrawerOpen}>
         <DrawerOverlay />
         <DrawerContent className="flex">
           <DrawerBody className="pl-5 bg-white w-[90%] shadow-right">
@@ -219,7 +231,7 @@ export const Navbar = () => {
                   className="w-[50px] h-[50px] rounded-full"
                   src="https://image.hm.com/content/dam/abtestdepartmentimages/Sustainability1.png?imwidth=150"
                 />
-                <p className="ml-3">Sustainiability</p>
+                <p className="ml-3">Sustainability</p>
               </div>
               <div className="p-2 text-xl">
                 <HiArrowRight />
@@ -229,7 +241,7 @@ export const Navbar = () => {
               <p>Customer Service</p>
             </div>
             <div className="p-2">
-              <p>NewsLetter</p>
+              <p>Newsletter</p>
             </div>
           </DrawerBody>
           <DrawerCloseButton className="absolute right-2 top-56 " />

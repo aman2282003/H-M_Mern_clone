@@ -1,5 +1,7 @@
 import React from "react";
 import { One } from "./midd/One";
+import { Two } from "./midd/Two";
+// import { Three } from "./midd/Three";
 export const Midd = () => {
   return (
     <div className="md:px-[18%] px-[5%] mt-6">
@@ -10,6 +12,7 @@ export const Midd = () => {
       </div>
       <div>
         <One />
+        <Two />
       </div>
     </div>
   );

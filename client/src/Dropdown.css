@@ -1,0 +1,39 @@
+/* Dropdown.css */
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.dropdown {
+    position: relative;
+   
+}
+
+.dropdown-header {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    /* top: 100%; */
+    left: 0;
+    width: 200px;
+    border-bottom: 5px solid black;
+    z-index: 1000;
+
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+}
+
+

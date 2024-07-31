@@ -27,7 +27,11 @@ export const One = () => {
 
   return (
     <div className="relative">
-      <img className="h-[580px] w-full" src={imageSrc} alt="Dreamy dress" />
+      <img
+        className="h-[370px] md:h-[660px] w-full"
+        src={imageSrc}
+        alt="Dreamy dress"
+      />
       <div className="absolute inset-0 flex flex-col items-center justify-end text-white p-4">
         <p className="md:text-2xl font-bold">Dreamy dress edit</p>
         <p className="text-md">Season's most coveted in-trend dresses</p>

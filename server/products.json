@@ -1,0 +1,98 @@
+[
+    {
+        "name" :"Flared-skirt dress",
+        "price": "2999",
+        "category" : "Ladies",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/21/e2/21e2a11df20209e71b290025c2fa741b9e0147f8.jpg],origin[dam],category[],type[LOOKBOOK],res[z],hmver[1]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Boat-neck top",
+        "price": "699",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/a4/f5/a4f58418fe9c92913b25beaef9e88e69946a2c3f.jpg],origin[dam],category[ladies_tops_shortsleeve],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Tie-detailed dress",
+        "price": "1499",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/5b/15/5b150b1ec2b0c5b280a50ddfae34617a2134bedd.jpg],origin[dam],category[ladies_dresses_shortdresses],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Shoulder-pad polo dress",
+        "price": "1499",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/27/aa/27aa466fea2827e7e61722bea9a67e668c8c2a1f.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Wide twill trouser",
+        "price": "1899",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/5c/16/5c165494d80728a848e5ad25c0078af4b95e7809.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Worn-look denim shoulder bag",
+        "price": "1499",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/61/77/61770f3166f66ea2f0aca523f37dbf8f428c4bfe.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Pleated mini skirt",
+        "price": "1499",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/fb/70/fb70810221254673c7af1d2d6fd50652affeb50b.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Tiered-skirt jersey dress",
+        "price": "1499",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/07/62/07625d0ec70fbe4b6f6e09e01e15fe99f291724d.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Metal-ring one-shoulder top",
+        "price": "999",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/20/b2/20b26af36964851593330833b863ad9626d3c885.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+     {
+        "name" :"Gathered flared-skirt dress",
+        "price": "799",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/3a/55/3a55176641214cc89e569346f7a5ff7d48af7c70.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name" :"Off-the-shoulder jersey top",
+        "price": "799",
+        "category" : "Ladies",
+        "image": "https://lp2.hm.com/hmgoepprod?set=source[/18/80/18807558cd1e0e4e20d2208a4c13aed9a0c7a6e3.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+    {
+        "name":"Fine-knit T-shirt",
+        "price" : "799",
+        "category": "Ladies",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/8b/79/8b7904f2de8f82b72ab9bef292fc901fef9ed95c.jpg],origin[dam],category[ladies_tops_shortsleeve],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+       {
+        "name":"Long-sleeved shirt",
+        "price" : "1499",
+        "category": "Ladies",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/81/91/819189e6b9126adadb5f4d9ae6b8a424879a8f83.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+           {
+        "name":"Baggy Wide Low Jeans",
+        "price" : "1499",
+        "category": "Ladies",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/4c/12/4c12ffdfa0625eb21d28499f6a0956e488f954cf.jpg],origin[dam],category[ladies_jeans_loose],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+      {
+        "name":"Flutter-sleeved muslin blouse",
+        "price" : "1499",
+        "category": "Ladies",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/94/b5/94b5d1e47220cd92a7d7932c0d78464ed3d0072b.jpg],origin[dam],category[ladies_shirtsblouses_blouses],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    },
+     {
+        "name":"Flutter-sleeved muslin blouseee",
+        "price" : "14995",
+        "category": "Men",
+        "image" : "https://lp2.hm.com/hmgoepprod?set=source[/94/b5/94b5d1e47220cd92a7d7932c0d78464ed3d0072b.jpg],origin[dam],category[ladies_shirtsblouses_blouses],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
+    }
+]

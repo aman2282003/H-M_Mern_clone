@@ -1,7 +1,13 @@
 import React from "react";
 import { One } from "./midd/One";
 import { Two } from "./midd/Two";
-// import { Three } from "./midd/Three";
+import { Three } from "./midd/Three";
+import { Four } from "./midd/Four";
+import { Five } from "./midd/Five";
+import { Six } from "./midd/Six";
+import { Seven } from "./midd/Seven";
+import { Eight } from "./midd/Eight";
+import { Nine } from "./midd/Nine";
 export const Midd = () => {
   return (
     <div className="md:px-[18%] px-[5%] mt-6">
@@ -13,6 +19,13 @@ export const Midd = () => {
       <div>
         <One />
         <Two />
+        <Three />
+        <Four />
+        <Five />
+        <Six />
+        <Seven />
+        <Eight />
+        <Nine />
       </div>
     </div>
   );

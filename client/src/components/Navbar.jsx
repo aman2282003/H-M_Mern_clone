@@ -33,6 +33,8 @@ export const Navbar = () => {
     onClose: onDrawerClose,
   } = useDisclosure();
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [showSignIn, setShowSignIn] = useState(false);
   const [showBag, setShowBag] = useState(false);
   const [cartprice, setCartPrice] = useState(0);
@@ -56,6 +58,46 @@ export const Navbar = () => {
     </div>
   );
 
+  function InitialFocus() {
+    return (
+      <>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader className="font-bold">Sign in</ModalHeader>
+            <ModalCloseButton />
+            <p className="px-4 text-center">
+              Become a member — don’t miss out on deals, offers, discounts and
+              bonus vouchers.
+            </p>
+
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>Email</FormLabel>
+                <input className="border w-[100%] bg-white h-[50px] border-gray" />
+              </FormControl>
+
+              <FormControl mt={4}>
+                <FormLabel>Password</FormLabel>
+                <input className="border w-[100%] bg-white h-[50px] border-gray" />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter className="flex flex-col">
+              <button mr={3} className="bg-black text-white w-[100%] py-3">
+                Sign in
+              </button>
+              <button className="text-black border border-black w-[100%] py-3 font-bold m-2">
+                Become a member
+              </button>
+              <p className=" underline">H&M Membership</p>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
+
   const Nav3 = ({ fitem }) => (
     <div className="space-x-4 text-md flex sign_in">
       <div
@@ -64,10 +106,15 @@ export const Navbar = () => {
         onMouseLeave={() => setShowSignIn(false)}
       >
         <IoIosContact className="w-6 h-6" />
-        <p className="hidden md:flex ">Sign in</p>
+        <p className="hidden md:flex " onClick={onOpen}>
+          Sign in
+        </p>
         {showSignIn && (
-          <div className="hidden md:block z-10 absolute top-full left-0 w-[240px] text-sm bg-white border p-2 shadow-md">
-            <button className="bg-black text-white w-full p-2 mb-5">
+          <div className="hidden md:block z-10 absolute top-full left-0 w-[220px] text-sm bg-white p-2 ">
+            <button
+              className="bg-black text-white w-full p-2 mb-5"
+              onClick={onOpen}
+            >
               Sign in
             </button>
             <p>My Account</p>
@@ -136,6 +183,7 @@ export const Navbar = () => {
           isMenuActive ? "block" : "hidden"
         } absolute top-full left-0 w-full py-4 px-3`}
       ></div>
+      <InitialFocus />
       <Drawer placement="left" onClose={onDrawerClose} isOpen={isDrawerOpen}>
         <DrawerOverlay />
         <DrawerContent className="flex">
@@ -244,7 +292,7 @@ export const Navbar = () => {
               <p>Newsletter</p>
             </div>
           </DrawerBody>
-          <DrawerCloseButton className="absolute right-2 top-56 " />
+          <DrawerCloseButton className="mt-[290px] mr-[-20px] " />
         </DrawerContent>
       </Drawer>
     </>

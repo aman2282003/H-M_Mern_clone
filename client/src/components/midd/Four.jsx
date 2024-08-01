@@ -37,7 +37,7 @@ export const Four = () => {
       <div className="absolute inset-0 flex flex-col  justify-end text-white p-4">
         <p className="md:text-2xl font-bold">The denim roundup</p>
         <p className="text-md">Up your jeans wardrobe</p>
-        <button className=" w-[130px] text-sm  mt-2 shadow text-black bg-white font-bold py-2 px-4 rounded hidden md:block">
+        <button className="hover:bg-gray-200 w-[130px] text-sm  mt-2 shadow text-black bg-white font-bold py-2 px-4 rounded hidden md:block">
           Shop Now
         </button>
       </div>

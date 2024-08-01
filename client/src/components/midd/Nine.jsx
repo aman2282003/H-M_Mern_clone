@@ -17,9 +17,12 @@ export const Nine = () => {
         <p className="font-bold text-white">Home: New Arrivals</p>
         <p className="text-sm text-white">Selection of most loved pieces</p>
 
-        <div className="bg-white m-2 w-[140px] text-center font-bold pl-2 hidden md:block">
+        <div className="hover:bg-gray-200 bg-white m-2 w-[140px] text-center font-bold pl-2 hidden md:block">
           Shop Now
         </div>
+      </div>
+      <div>
+        
       </div>
     </>
   );

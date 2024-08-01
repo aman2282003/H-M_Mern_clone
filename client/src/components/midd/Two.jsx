@@ -20,13 +20,13 @@ export const Two = () => {
           update
         </p>
         <div className="flex">
-          <div className="bg-white m-2 w-[90px] font-bold pl-2 hidden md:block">
+          <div className="bg-white hover:bg-gray-200 m-2 w-[90px] font-bold pl-2 hidden md:block">
             Ladies
           </div>
-          <div className="bg-white m-2 w-[60px] font-bold pl-2 hidden md:block">
+          <div className="bg-white hover:bg-gray-200 m-2 w-[60px] font-bold pl-2 hidden md:block">
             Men
           </div>
-          <div className="bg-white m-2 w-[150px] font-bold pl-2 hidden md:block">
+          <div className="bg-white hover:bg-gray-200 m-2 w-[150px] font-bold pl-2 hidden md:block">
             Kids & Baby
           </div>
         </div>

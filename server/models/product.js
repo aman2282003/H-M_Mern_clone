@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   category: {
     type: String,
@@ -21,9 +21,9 @@ const productSchema = new mongoose.Schema({
       message: `{VALUE} is not supported`,
     },
   },
-  image :{
-        type: String,
-    },
+  image: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Product", productSchema);

@@ -1,10 +1,10 @@
 import React from "react";
 
-const Womencard = ({ item }) => {
+const Bcards = ({ item }) => {
   return (
-    <div className=" h-[200px] flex items-center justify-center mt-2 ">
-      <div>
-        <figure className="flex justify-center items-center h-[150px] w-[200px] bg-blue">
+    <div className=" h-[400px] flex items-center justify-center mt-2 ">
+      <div className="">
+        <figure className="flex justify-center items-center h-[350px] w-[220px]  ">
           <img
             src={item.image}
             alt="Clothes"
@@ -25,4 +25,4 @@ const Womencard = ({ item }) => {
   );
 };
 
-export default Womencard;
+export default Bcards;

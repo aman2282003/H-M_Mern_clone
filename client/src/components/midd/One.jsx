@@ -35,7 +35,7 @@ export const One = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-end text-white p-4">
         <p className="md:text-2xl font-bold">Dreamy dress edit</p>
         <p className="text-md">Season's most coveted in-trend dresses</p>
-        <button className="mt-2 shadow text-black bg-white font-bold py-2 px-4 rounded hidden md:block">
+        <button className="mt-2 hover:bg-gray-200 shadow text-black bg-white font-bold py-2 px-4 rounded hidden md:block">
           Shop Now
         </button>
       </div>

@@ -1,0 +1,11 @@
+[
+    {
+        "email" :"amaninfo201415@gmail.com",
+        "password": "amaninfo201415",
+        "dateOfBirth" : "2003-08-22",
+        "firstName": "Amandeep",
+        "lastName":"Singh",
+        "gender": "Male",
+        "postalCode": "141007"
+    }
+]

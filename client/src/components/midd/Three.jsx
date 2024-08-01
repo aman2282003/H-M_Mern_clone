@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
-import Womencard from "../card/Womencard";
+import Cards from "../card/Cards";
 export const Three = () => {
   const [item, setitem] = useState([]);
 
@@ -13,7 +13,7 @@ export const Three = () => {
     const getItem = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/products?category=Ladies"
+          "http://localhost:8080/products?category=Ladies"
         );
         setitem(response.data.Mydata);
       } catch (error) {
@@ -69,7 +69,7 @@ export const Three = () => {
       <div>
         <Slider {...settings}>
           {item.map((item) => (
-            <Womencard item={item} key={item._id} />
+            <Cards item={item} key={item._id} />
           ))}
         </Slider>
       </div>

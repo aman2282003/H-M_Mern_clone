@@ -1,8 +1,16 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Cards = ({ item }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/products/${item._id}`); // Ensure item._id is correctly formatted
+  };
+
   return (
-    <div className=" h-[200px] flex items-center justify-center mt-2 ">
+    <div
+      onClick={handleClick}
+      className=" h-[200px] flex items-center justify-center mt-2 "
+    >
       <div>
         <figure className="flex justify-center items-center h-[150px] w-[200px] bg-blue">
           <img
@@ -17,7 +25,7 @@ const Cards = ({ item }) => {
             {item.name.length > 12 ? `${item.name.slice(0, 16)}...` : item.name}
           </h2>
           <div className="text-black text-sm">
-            <div className="">Rs.{item.price}</div>
+            <div className="">Rs.{item.price}.00</div>
           </div>
         </div>
       </div>

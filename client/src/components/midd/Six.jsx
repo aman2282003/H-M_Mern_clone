@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
 import Bcards from "../card/Bcards";
+import Arrow from "./Arrow"; // Import the Arrow component
 
 export const Six = () => {
   const [item, setItem] = useState([]);
@@ -34,6 +35,8 @@ export const Six = () => {
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
+    nextArrow: <Arrow direction="right" />, // Custom right arrow
+    prevArrow: <Arrow direction="left" />, // Custom left arrow
     responsive: [
       {
         breakpoint: 1024,
@@ -109,20 +112,14 @@ export const Six = () => {
           Sport
         </button>
       </div>
-      <div>
-
-
-
-
+      <div className="my-6 relative">
+        {" "}
+        {/* Ensure this container is relatively positioned */}
         <Slider {...settings}>
           {item.map((item) => (
             <Bcards item={item} key={item._id} />
           ))}
         </Slider>
-
-
-
-        
       </div>
     </>
   );

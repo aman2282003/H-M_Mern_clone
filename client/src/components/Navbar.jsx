@@ -4,6 +4,7 @@ import { HiAdjustments, HiArrowRight } from "react-icons/hi";
 import { IoIosContact } from "react-icons/io";
 import { IoBagOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
+import axios from "axios";
 import {
   Drawer,
   DrawerBody,
@@ -42,6 +43,7 @@ export const Navbar = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showBag, setShowBag] = useState(false);
   const [cartprice, setCartPrice] = useState(0);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
@@ -51,6 +53,56 @@ export const Navbar = () => {
 
   const handleCheckboxChange = () => {
     setEmailUpdates(!emailUpdates);
+  };
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    dateOfBirth: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    emailUpdates: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleTermsChange = () => {
+    setAcceptTerms(!acceptTerms);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!acceptTerms) {
+      alert("Please accept the terms and conditions to proceed.");
+      return;
+    }
+    console.log("Submitting form...");
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/users/createuser",
+        formData
+      );
+      alert("User created successfully!");
+      // Handle response data here if needed
+    } catch (error) {
+      // Check if error response is available
+      if (error.response && error.response.status === 409) {
+        alert("User already exists.");
+      } else {
+        console.error(
+          "Error:",
+          error.response ? error.response.data : error.message
+        );
+        alert("Failed to create user. Please check the console for details.");
+      }
+    }
   };
 
   const Nav1 = () => (
@@ -84,12 +136,12 @@ export const Navbar = () => {
             <ModalBody pb={6}>
               <FormControl>
                 <FormLabel>Email</FormLabel>
-                <input className="border w-[100%] bg-white h-[50px] border-gray" />
+                <Input className="border w-[100%] bg-white h-[50px] border-gray" />
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel>Password</FormLabel>
-                <input className="border w-[100%] bg-white h-[50px] border-gray" />
+                <Input className="border w-[100%] bg-white h-[50px] border-gray" />
               </FormControl>
             </ModalBody>
 
@@ -114,135 +166,161 @@ export const Navbar = () => {
   function InitialFocus2() {
     return (
       <>
-        <Modal isOpen={isSecondModalOpen} onClose={onSecondModalClose}>
-          <ModalOverlay />
-          <ModalContent maxH="90vh" overflowY="auto">
-            <ModalHeader className="font-bold text-center">
-              Become an H&M member
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <p className="px-4 text-center text-sm">
-                Become a member — don’t miss out on deals, offers, discounts and
-                bonus vouchers.
-              </p>
-              <FormControl mt={4}>
-                <FormLabel>
-                  Email<sup className="text-red-500 m-1">*</sup>
-                </FormLabel>
-                <input
-                  type="text"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>
-                  Create a password<sup className="text-red-500 m-1">*</sup>
-                </FormLabel>
-                <input
-                  type="text"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-                <p className="text-gray-500 text-sm">
-                  8 characters 1 lowercase 1 uppercase 1 number
-                </p>
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>
-                  Date of birth<sup className="text-red-500 m-1">*</sup>
-                </FormLabel>
-                <input
-                  type="date"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-                <p className="text-gray-500 text-sm">
-                  H&M wants to give you a special treat on your birthday
-                </p>
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>First name</FormLabel>
-                <input
-                  type="text"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>Last name</FormLabel>
-                <input
-                  type="text"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>Gender</FormLabel>
-                <select className="border w-[100%] bg-white h-[50px] border-gray">
-                  <option value="">Select a gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Postal code</FormLabel>
-                <input
-                  type="number"
-                  className="border w-[100%] bg-white h-[50px] border-gray"
-                />
-              </FormControl>
-
-              <div className="py-4">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="emailUpdates"
-                    checked={emailUpdates}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor="emailUpdates" className="my-12 text-sm">
-                    Yes, email me offers, style updates, and special invites to
-                    sales and events.
-                  </label>
-                </div>
-                <p className="my-4 text-sm">
-                  Wish your inbox was more stylish? No problem, just subscribe
-                  to our newsletter. Find out what's hot and happening in the
-                  world of fashion, beauty, and home decor. Plus, you'll get
-                  bonus vouchers, birthday offers, and special invites to sales
-                  and events – straight to your inbox!
-                </p>
-                <p className="text-gray-500 text-sm ">
-                  By clicking ‘Become a member’, I agree to the H&M Membership{" "}
-                  <a href="" target="_blank" className="underline">
-                    Terms and conditions
-                  </a>
-                  .
-                </p>
-                <p className="text-sm text-gray-500 mt-3">
-                  To give you the full membership experience, we will process
-                  your personal data in accordance with the H&M's
-                  <a
-                    href="https://www.hm.com/privacy"
-                    target="_blank"
-                    className="underline "
-                  >
-                    Privacy Notice
-                  </a>
-                  .
-                </p>
-              </div>
-            </ModalBody>
-
-            <ModalFooter className="flex flex-col">
-              <button className="text-white bg-black border border-black w-[100%] py-3 font-bold m-2">
+        <form>
+          <Modal isOpen={isSecondModalOpen} onClose={onSecondModalClose}>
+            <ModalOverlay />
+            <ModalContent maxH="90vh" overflowY="auto">
+              <ModalHeader className="font-bold text-center">
                 Become an H&M member
-              </button>
-              <button className="bg-white border border-black text-black w-[100%] py-3">
-                Sign in
-              </button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                <p className="px-4 text-center text-sm">
+                  Become a member — don’t miss out on deals, offers, discounts
+                  and bonus vouchers.
+                </p>
+                <FormControl mt={4}>
+                  <FormLabel>
+                    Email<sup className="text-red-500 m-1">*</sup>
+                  </FormLabel>
+                  <Input
+                    type="text"
+                    required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>
+                    Create a password<sup className="text-red-500 m-1">*</sup>
+                  </FormLabel>
+                  <Input
+                    required
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  />
+                  <p className="text-gray-500 text-sm">
+                    8 characters 1 lowercase 1 uppercase 1 number
+                  </p>
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>
+                    Date of birth<sup className="text-red-500 m-1">*</sup>
+                  </FormLabel>
+                  <Input
+                    type="date"
+                    name="dateOfBirth"
+                    value={formData.dateOfBirth}
+                    onChange={handleChange}
+                    required
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  />
+                  <p className="text-gray-500 text-sm">
+                    H&M wants to give you a special treat on your birthday
+                  </p>
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>First name</FormLabel>
+                  <Input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Last name</FormLabel>
+                  <Input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Gender</FormLabel>
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    required
+                    className="p-2 border w-[100%] bg-white h-[50px] border-gray"
+                  >
+                    <option value="">Select a gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </FormControl>
+
+                <div className="py-4">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="acceptTerms"
+                      name="acceptTerms"
+                      checked={acceptTerms}
+                      onChange={handleTermsChange}
+                      required
+                      className="mr-2"
+                    />
+                    <label htmlFor="emailUpdates" className="my-12 text-sm">
+                      Yes, email me offers, style updates, and special invites
+                      to sales and events.
+                    </label>
+                  </div>
+                  <p className="my-4 text-sm">
+                    Wish your inbox was more stylish? No problem, just subscribe
+                    to our newsletter. Find out what's hot and happening in the
+                    world of fashion, beauty, and home decor. Plus, you'll get
+                    bonus vouchers, birthday offers, and special invites to
+                    sales and events – straight to your inbox!
+                  </p>
+                  <p className="text-gray-500 text-sm ">
+                    By clicking ‘Become a member’, I agree to the H&M Membership{" "}
+                    <a href="" target="_blank" className="underline">
+                      Terms and conditions
+                    </a>
+                    .
+                  </p>
+                  <p className="text-sm text-gray-500 mt-3">
+                    To give you the full membership experience, we will process
+                    your personal data in accordance with the H&M's
+                    <a
+                      href="https://www.hm.com/privacy"
+                      target="_blank"
+                      className="underline "
+                    >
+                      Privacy Notice
+                    </a>
+                    .
+                  </p>
+                </div>
+              </ModalBody>
+
+              <ModalFooter className="flex flex-col">
+                <button className="text-white bg-black border border-black w-[100%] py-3 font-bold m-2">
+                  Become an H&M member
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  className="bg-white border border-black text-black w-[100%] py-3"
+                >
+                  Sign in
+                </button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </form>
       </>
     );
   }

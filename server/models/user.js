@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dateOfBirth: {
-    type: Date,
-    required: true,
-  },
   firstName: {
     type: String,
     required: true,
@@ -25,10 +21,6 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
     enum: ["Male", "Female", "Other"],
-    required: true,
-  },
-  postalCode: {
-    type: Number, 
     required: true,
   },
   createdAt: {

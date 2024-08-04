@@ -9,7 +9,8 @@ import "./index.css";
 
 export default function App() {
   return (
-    <Router>
+ <>
+
       <Navbar />
       <Dropdown />
       <Routes>
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/products/:id" element={<Spage />} />
       </Routes>
       <Footer />
-    </Router>
+</>
+   
   );
 }

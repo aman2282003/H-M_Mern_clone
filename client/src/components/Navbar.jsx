@@ -4,6 +4,7 @@ import { HiAdjustments, HiArrowRight } from "react-icons/hi";
 import { IoIosContact } from "react-icons/io";
 import { IoBagOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
   Drawer,
@@ -24,8 +25,11 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
+import { useContext } from "react";
+import { AuthContext } from "../context/Authcontext";
 
 export const Navbar = () => {
+  const { isAuth, setisAuth, token, settoken } = useContext(AuthContext);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [fitem, setFitem] = useState(0);
   const {
@@ -55,44 +59,30 @@ export const Navbar = () => {
     setEmailUpdates(!emailUpdates);
   };
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    dateOfBirth: "",
-    firstName: "",
-    lastName: "",
-    gender: "",
-    emailUpdates: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const handleTermsChange = () => {
     setAcceptTerms(!acceptTerms);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     if (!acceptTerms) {
       alert("Please accept the terms and conditions to proceed.");
       return;
     }
-    console.log("Submitting form...");
     try {
       const response = await axios.post(
         "http://localhost:8080/users/createuser",
-        formData
+        data
       );
       alert("User created successfully!");
-      // Handle response data here if needed
+      reset(); // Clear the form
     } catch (error) {
-      // Check if error response is available
       if (error.response && error.response.status === 409) {
         alert("User already exists.");
       } else {
@@ -163,96 +153,100 @@ export const Navbar = () => {
     );
   }
 
-  function InitialFocus2() {
+  function InitialFocus2({ onOpen }) {
     return (
       <>
-        <form>
-          <Modal isOpen={isSecondModalOpen} onClose={onSecondModalClose}>
-            <ModalOverlay />
-            <ModalContent maxH="90vh" overflowY="auto">
-              <ModalHeader className="font-bold text-center">
-                Become an H&M member
-              </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody pb={6}>
-                <p className="px-4 text-center text-sm">
-                  Become a member — don’t miss out on deals, offers, discounts
-                  and bonus vouchers.
-                </p>
+        <Modal isOpen={isSecondModalOpen} onClose={onSecondModalClose}>
+          <ModalOverlay />
+          <ModalContent maxH="90vh" overflowY="auto">
+            <ModalHeader className="font-bold text-center">
+              Become an H&M member
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <p className="px-4 text-center text-sm">
+                Become a member — don’t miss out on deals, offers, discounts,
+                and bonus vouchers.
+              </p>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl mt={4}>
                   <FormLabel>
                     Email<sup className="text-red-500 m-1">*</sup>
                   </FormLabel>
-                  <Input
-                    type="text"
-                    required
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                  <input
+                    type="email"
+                    {...register("email", { required: "Email is required" })}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>
                     Create a password<sup className="text-red-500 m-1">*</sup>
                   </FormLabel>
-                  <Input
-                    required
+                  <input
                     type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 8,
+                        message: "Password must be at least 8 characters",
+                      },
+                      pattern: {
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                        message:
+                          "Password must include at least one lowercase letter, one uppercase letter, and one number",
+                      },
+                    })}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   />
-                  <p className="text-gray-500 text-sm">
-                    8 characters 1 lowercase 1 uppercase 1 number
-                  </p>
+                  {errors.password && (
+                    <p className="text-red-500 text-sm">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>
                     Date of birth<sup className="text-red-500 m-1">*</sup>
                   </FormLabel>
-                  <Input
+                  <input
                     type="date"
-                    name="dateOfBirth"
-                    value={formData.dateOfBirth}
-                    onChange={handleChange}
-                    required
+                    {...register("dateOfBirth", {
+                      required: "Date of birth is required",
+                    })}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   />
-                  <p className="text-gray-500 text-sm">
-                    H&M wants to give you a special treat on your birthday
-                  </p>
+                  {errors.dateOfBirth && (
+                    <p className="text-red-500 text-sm">
+                      {errors.dateOfBirth.message}
+                    </p>
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>First name</FormLabel>
-                  <Input
+                  <input
                     type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
+                    {...register("firstName")}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   />
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Last name</FormLabel>
-                  <Input
+                  <input
                     type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
+                    {...register("lastName")}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   />
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Gender</FormLabel>
                   <select
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                    required
+                    {...register("gender", { required: "Gender is required" })}
                     className="p-2 border w-[100%] bg-white h-[50px] border-gray"
                   >
                     <option value="">Select a gender</option>
@@ -260,20 +254,23 @@ export const Navbar = () => {
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
+                  {errors.gender && (
+                    <p className="text-red-500 text-sm">
+                      {errors.gender.message}
+                    </p>
+                  )}
                 </FormControl>
-
                 <div className="py-4">
                   <div>
                     <input
                       type="checkbox"
                       id="acceptTerms"
-                      name="acceptTerms"
                       checked={acceptTerms}
                       onChange={handleTermsChange}
                       required
                       className="mr-2"
                     />
-                    <label htmlFor="emailUpdates" className="my-12 text-sm">
+                    <label htmlFor="acceptTerms" className="my-12 text-sm">
                       Yes, email me offers, style updates, and special invites
                       to sales and events.
                     </label>
@@ -285,7 +282,7 @@ export const Navbar = () => {
                     bonus vouchers, birthday offers, and special invites to
                     sales and events – straight to your inbox!
                   </p>
-                  <p className="text-gray-500 text-sm ">
+                  <p className="text-gray-500 text-sm">
                     By clicking ‘Become a member’, I agree to the H&M Membership{" "}
                     <a href="" target="_blank" className="underline">
                       Terms and conditions
@@ -294,33 +291,36 @@ export const Navbar = () => {
                   </p>
                   <p className="text-sm text-gray-500 mt-3">
                     To give you the full membership experience, we will process
-                    your personal data in accordance with the H&M's
+                    your personal data in accordance with the H&M's{" "}
                     <a
                       href="https://www.hm.com/privacy"
                       target="_blank"
-                      className="underline "
+                      className="underline"
                     >
                       Privacy Notice
                     </a>
                     .
                   </p>
                 </div>
-              </ModalBody>
-
-              <ModalFooter className="flex flex-col">
-                <button className="text-white bg-black border border-black w-[100%] py-3 font-bold m-2">
-                  Become an H&M member
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  className="bg-white border border-black text-black w-[100%] py-3"
-                >
-                  Sign in
-                </button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </form>
+                <ModalFooter className="flex flex-col">
+                  <button
+                    type="submit"
+                    className="text-white bg-black border border-black w-[100%] py-3 font-bold m-2"
+                  >
+                    Become an H&M member
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onOpen}
+                    className="bg-white border border-black text-black w-[100%] py-3"
+                  >
+                    Sign in
+                  </button>
+                </ModalFooter>
+              </form>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </>
     );
   }
@@ -334,7 +334,7 @@ export const Navbar = () => {
       >
         <IoIosContact className="w-6 h-6" />
         <p className="hidden md:flex " onClick={onOpen}>
-          Sign in
+          {isAuth ? "My Account" : "Sign in"}
         </p>
         {showSignIn && (
           <div className="hidden md:block z-10 absolute top-full left-0 w-[230px] text-sm bg-white p-2 ">
@@ -397,13 +397,13 @@ export const Navbar = () => {
         <div className="flex items-center space-x-4 md:hidden">
           <img src={logo} className="h-[40px] w-[50px]" alt="Logo" />
         </div>
-        <div className="w-[31%] hidden md:block">
+        <div className="w-[34%] hidden md:block">
           <Nav1 />
         </div>
-        <div className="w-[37%]">
+        <div className="w-[32%]">
           <Nav2 />
         </div>
-        <div className="w-[32%] flex justify-end">
+        <div className="w-[35%] flex justify-end">
           <Nav3 fitem={fitem} />
         </div>
       </div>
@@ -413,7 +413,7 @@ export const Navbar = () => {
         } absolute top-full left-0 w-full py-4 px-3`}
       ></div>
       <InitialFocus />
-      <InitialFocus2 />
+      <InitialFocus2 onOpen={onOpen} />
       <Drawer placement="left" onClose={onDrawerClose} isOpen={isDrawerOpen}>
         <DrawerOverlay />
         <DrawerContent className="flex">

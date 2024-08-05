@@ -13,7 +13,7 @@ export const Three = () => {
     const getItem = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/products?category=Ladies"
+          "https://h-m-mern-clone.onrender.com/products?category=Ladies"
         );
         setitem(response.data.Mydata);
       } catch (error) {

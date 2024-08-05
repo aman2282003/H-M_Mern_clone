@@ -14,7 +14,7 @@ export const Six = () => {
     const getItem = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/products?category=${category}`
+          `https://h-m-mern-clone.onrender.com/products?category=${category}`
         );
         setItem(response.data.Mydata);
       } catch (error) {
@@ -74,7 +74,7 @@ export const Six = () => {
   return (
     <>
       <p className="font-bold text-2xl mt-2 ">New Arrivals</p>
-      <div >
+      <div>
         <button
           onClick={() => handleCategoryChange("Ladies")}
           className={buttonStyles("Ladies")}

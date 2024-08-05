@@ -27,8 +27,10 @@ import {
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../context/Authcontext";
-
+import { Link } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 export const Navbar = () => {
+   const toast = useToast();
   const { isAuth, setisAuth, token, settoken } = useContext(AuthContext);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [fitem, setFitem] = useState(0);
@@ -77,14 +79,26 @@ export const Navbar = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:8080/users/createuser",
+        "https://h-m-mern-clone.onrender.com/users/createuser",
         data
       );
-      alert("User created successfully!");
+      toast({
+        title: "Account Created Successfully.",
+        description: "Please Login for shopping.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       reset(); // Clear the form
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        alert("User already exists.");
+        toast({
+          title: "User Already exisits.",
+          description: "Please Login for shopping.",
+          status: "failure",
+          duration: 9000,
+          isClosable: true,
+        });
       } else {
         console.error(
           "Error:",
@@ -345,7 +359,7 @@ export const Navbar = () => {
               Sign in
             </button>
             <p>My Account</p>
-            <p>H&M Membership</p>
+            <Link to="/member">H&M Membership</Link>
             <p className="text-gray-500" onClick={onSecondModalOpen}>
               Not a Member yet! Join there
             </p>

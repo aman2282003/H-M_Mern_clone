@@ -11,7 +11,7 @@ export const Spage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/products/${id}`
+          `https://h-m-mern-clone.onrender.com//products/${id}`
         );
         setProduct(response.data);
       } catch (error) {
